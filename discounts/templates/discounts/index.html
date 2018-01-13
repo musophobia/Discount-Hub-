@@ -1,0 +1,30 @@
+<!--Loads the path to static -->
+
+{% extends 'discounts/base.html'%}
+
+{% block body %}
+
+
+<h1 class="page-header">{{website}}</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Website Name</th>
+            <th>Website Region</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for website in all_websites %}
+        <tr>
+            <td><a href="{% url 'discounts:detail' website.id %}">{{website.website_name}}</a>
+            </td>
+            <td>{{ website.website_region }}</td>
+            
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

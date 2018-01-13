@@ -1,0 +1,61 @@
+{% extends 'discounts/base.html'%}
+
+{% block body %}
+
+{{coupon}}
+
+{% block title %}All Coupons{% endblock %}
+
+<h1> All Coupons </h1>
+
+<!--
+<ul>
+	{% for product in all_coupons %}
+		
+	<li>
+		<a href="{% url 'discounts:coupon-update' pk=product.pk %}">{{ product.coupon_name }} --- {{ product.coupon_detail }}</a>
+
+		<form action="{% url 'discounts:coupon-delete' pk=product.pk %}" method="post" style="display: inline;">
+			{% csrf_token %}
+			<input type="hidden" name="product_id" value="{{product.id}}"/>
+			<button type="submit" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+		</form>
+
+	</li>
+		
+	{% endfor %}
+</ul>
+
+-->
+
+<table class="table table-striped">
+        <thead>
+          <tr >
+            <th>Coupon</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in all_coupons %}
+        <tr >
+            <td><a href="{% url 'discounts:coupon-update' pk=product.pk %}">{{ product.coupon_name }} --- {{ product.coupon_detail }}</a>
+
+            	<form action="{% url 'discounts:coupon-delete' pk=product.pk %}" method="post" style="display: inline;">
+			{% csrf_token %}
+			<input type="hidden" name="product_id" value="{{product.id}}"/>
+			
+		</form>
+            </td>
+            
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+
+{% endblock %}
