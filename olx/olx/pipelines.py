@@ -22,10 +22,14 @@ class OlxPipeline(object):
         website=Website.objects.get(website_name='pickaboo')
         product = Product()
         product.website = website
-        product.title = item['title']
-        product.price_old = item['old_price']
-        product.price_new = item['new_price']
-        product.percentage = item['percentage']
+        if item['title']:
+            product.title = item['title'].encode('ascii', 'ignore').decode('ascii')
+        if item['old_price']:
+            product.price_old = item['old_price'].encode('ascii', 'ignore').decode('ascii')
+        if item['new_price']:
+            product.price_new = item['new_price'].encode('ascii', 'ignore').decode('ascii')
+        if item['percentage']:
+            product.percentage = item['percentage'].encode('ascii', 'ignore').decode('ascii')
         if re.findall('\\d+',item['percentage']) > 50:
             product.byPercentage=percent50
         else:    
