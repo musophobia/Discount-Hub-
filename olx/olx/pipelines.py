@@ -37,6 +37,7 @@ class OlxPipeline(object):
         product.url = item['url']
         if re.findall('\\d+',item['percentage']) > 10:
        	    product.save()
-        else pass
+        else:
+            pass
         return item
 
