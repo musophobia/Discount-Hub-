@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
-cd ~/disCountHubF/olx
+cd ~/olx
 ~/bin/scrapy $@
