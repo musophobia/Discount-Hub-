@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'disCountHubF.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
 }
 
 
@@ -106,7 +106,7 @@ LOGIN_REDIRECT_URL = '/discounts/'
 
 # Change 'default' database configuration with $DATABASE_URL.
 
-DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
+DATABASES['default'].update(dj_database_url.config())
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
