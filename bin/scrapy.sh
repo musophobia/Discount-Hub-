@@ -1,3 +1,3 @@
-#! /usr/bin/env bash
+#! /bin/env bash
 cd ~/olx
 ~/bin/scrapy $@
