@@ -33,6 +33,7 @@ class Product(models.Model):
 		return self.title
 
 class Coupon(models.Model):
+	#coupon_submit = models.CharField(max_length=250)
 	coupon_name = models.CharField(max_length=250)
 	coupon_detail = models.CharField(max_length=2500)
 	def get_absolute_url(self):
