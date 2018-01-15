@@ -8,7 +8,14 @@ import re
 class DarazSPSpider(scrapy.Spider):
 	name = 'daraz'
 	allowed_domains = ['daraz.com.bd']
-	start_urls = ['https://www.daraz.com.bd/smartphones/',]
+	start_urls = ['https://www.daraz.com.bd/smartphones/',
+	'https://www.daraz.com.bd/phones-tablets/',
+	'https://www.daraz.com.bd/cooling-heaters/',
+	'https://www.daraz.com.bd/cameras/',
+	'https://www.daraz.com.bd/power-banks/',
+	'https://www.daraz.com.bd/mens-sweatshirts-hoodies/',
+	'https://www.daraz.com.bd/mens-watches/',
+	]
 	prev_page='a'
 
 	def parse(self,response):
