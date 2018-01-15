@@ -26,24 +26,23 @@
 
 -->
 
-<table class="table table-striped">
+
+
+    <table class="table table-striped">
         <thead>
-          <tr >
-            <th>Coupon</th>
+          <tr>
+            <th>Title</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>
         {% for product in all_coupons %}
-        <tr >
-            <td><a href="{% url 'discounts:coupon-update' pk=product.pk %}">{{ product.coupon_name }} --- {{ product.coupon_detail }}</a>
-
-            	<form action="{% url 'discounts:coupon-delete' pk=product.pk %}" method="post" style="display: inline;">
-			{% csrf_token %}
-			<input type="hidden" name="product_id" value="{{product.id}}"/>
-			
-		</form>
+        <tr class="active">
+            <td>
+            	{{ product.coupon_name }}
             </td>
             
+            <td>{{ product.coupon_detail }}</td>
         </tr>
         {% endfor %}
         </tbody>
