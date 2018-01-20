@@ -4,13 +4,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.http import Http404
-from .models import Website,Product,ByPercentage, Coupon
+from .models import Website,Product,ByPercentage,Coupon
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
+from django.views.generic.detail import DetailView
 from .forms import UserForm
 
 def redirect_root(request):
@@ -22,13 +23,30 @@ class IndexView(generic.ListView):
 	def get_queryset(self):
 		return Website.objects.all()
 
+class IndexView2(generic.ListView):
+	template_name='discounts/index2.html'
+	context_object_name='all_bypercentages'
+	def get_queryset(self):
+		return ByPercentage.objects.all()
+						
+
 class DetailView(generic.DetailView):
 	model=Website
 	template_name='discounts/detail.html'
+
+class DetailView2(generic.DetailView):
+	model=ByPercentage
+	template_name='discounts/detail2.html'
+		
+
 	
 class CouponCreate(CreateView):
 	model = Coupon
-	fields = ['coupon_name','coupon_detail']
+	fields = ['coupon_name','coupon_detail','coupon_code','coupon_link']
+
+class CouponDetail(DetailView):
+	model = Coupon
+	template_name='discounts/coupondetail.html'
 
 class CouponUpdate(UpdateView):
 	model = Coupon
@@ -43,8 +61,9 @@ class CouponView(generic.ListView):
 	context_object_name='all_coupons'
 	def get_queryset(self):
 		return Coupon.objects.all()
-class CouponDetail(object):
-	template_name='discounts/detail.html'
+
+
+
 
 class UserFormView(View):
 	form_class= UserForm

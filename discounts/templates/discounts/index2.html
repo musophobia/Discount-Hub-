@@ -1,0 +1,28 @@
+<!--Loads the path to static -->
+
+{% extends 'discounts/base.html'%}
+
+{% block body %}
+
+
+<h1 class="page-header">{{bypercentage}}</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>By Percent</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for percent in all_bypercentages %}
+        <tr>
+            <td><a href="{% url 'discounts:detail2' percent.id %}">Starting From {{percent.byPercentage}} Percenents</a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

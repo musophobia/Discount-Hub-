@@ -33,7 +33,9 @@ class DarazSPSpider(scrapy.Spider):
 			#item['percentage']=
 
 			if (ref.css('.link>.price-container.clearfix>.sale-flag-percent ::text').extract()):
-				print(ref.css('.link>.price-container.clearfix>.sale-flag-percent ::text').extract()[0])
+				toPrint=ref.css('.link>.price-container.clearfix>.sale-flag-percent ::text').extract()[0]
+				#print(re.findall('\d+', toPrint))
+				print(toPrint)
 				item['percentage']=ref.css('.link>.price-container.clearfix>.sale-flag-percent ::text').extract()[0]
 			#else:
 			#	print('no percentage')

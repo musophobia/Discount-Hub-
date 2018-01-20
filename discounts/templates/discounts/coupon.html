@@ -28,7 +28,7 @@
 
 
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="mytable">
         <thead>
           <tr>
             <th>Title</th>
@@ -39,7 +39,7 @@
         {% for product in all_coupons %}
         <tr class="active">
             <td>
-            	{{ product.coupon_name }}
+                <a href="{% url 'discounts:coupon-detail' product.id %}">{{ product.coupon_name }}</a>
             </td>
             
             <td>{{ product.coupon_detail }}</td>
