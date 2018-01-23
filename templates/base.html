@@ -3,11 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{% block title %}Discount Hub{% endblock %}</title>
-	{% load staticfiles %}
+	{% load static %}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'discounts/style.css' %}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Satisfy" />
 </head>
 <body>
@@ -29,7 +33,7 @@
 				<li class="active">
 					<a href="{% url 'discounts:index' %}">
 						<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
-						Hub
+						Deals by Website
 					</a>
 				</li>
 				<li class="">
@@ -38,6 +42,13 @@
 						Coupons
 					</a>
 				</li>
+				<li class="active">
+					<a href="{% url 'discounts:index2' %}">
+						<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
+						Deals by Percentage
+					</a>
+				</li>
+
 			</ul>
 <!--
 			<form class="navbar-form navbar-left" role="search" method="get" action="#">
@@ -61,6 +72,7 @@
 				</li>
 				{% if user.is_authenticated %}
      				<li><a href="#" >{{ user.get_username }}</a> </li>
+     				<li><a href="#" >{{ user.profile.credit_available }}</a> </li>
      				<li><a href="{% url 'logout'%}?next={{request.path}}"> Logout</a></li>   
    				{% else %}
    					<li><a href="{% url 'discounts:register'%}?next={{request.path}}">Sign Up</a></li> 
@@ -76,6 +88,12 @@
 </nav>
 {% block body %}
 {% endblock %}
+
+<script>
+$(document).ready(function(){
+    $('#mytable').DataTable();
+});
+</script>
 </body>
 </html>
 

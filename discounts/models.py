@@ -58,7 +58,7 @@ class Coupon(models.Model):
 	coupon_detail = models.CharField(max_length=2500)
 	coupon_code = models.CharField(max_length=2500)
 	coupon_link = models.CharField(max_length=2500)
-	created_by = models.ForeignKey(Profile, on_delete=models.CASCADE)
+	created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 	def get_absolute_url(self):
 		return reverse('discounts:coupon')
 

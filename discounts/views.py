@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.http import Http404
-from .models import Website,Product,ByPercentage,Coupon
+from .models import Website,Product,ByPercentage,Coupon, Profile
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -13,6 +13,10 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views.generic.detail import DetailView
 from .forms import UserForm
+from django.contrib.auth.models import User
+from django.views.generic.edit import ModelFormMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 def redirect_root(request):
 	return HttpResponseRedirect('/discounts/')
@@ -29,11 +33,13 @@ class IndexView2(generic.ListView):
 	def get_queryset(self):
 		return ByPercentage.objects.all()
 						
-
+@method_decorator(login_required, name='dispatch')
 class DetailView(generic.DetailView):
 	model=Website
 	template_name='discounts/detail.html'
 
+	
+@method_decorator(login_required, name='dispatch')
 class DetailView2(generic.DetailView):
 	model=ByPercentage
 	template_name='discounts/detail2.html'
@@ -44,9 +50,31 @@ class CouponCreate(CreateView):
 	model = Coupon
 	fields = ['coupon_name','coupon_detail','coupon_code','coupon_link']
 
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.created_by = self.request.user
+		self.object.save()
+		return super(ModelFormMixin, self).form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
 class CouponDetail(DetailView):
 	model = Coupon
 	template_name='discounts/coupondetail.html'
+
+	def get(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		context = self.get_context_data(object=self.object)
+		edit_user=Profile.objects.get(user=self.object.created_by)
+		if self.object.created_by!=self.request.user:
+			edit_user.credit_available+=10
+		edit_user.save()
+
+		decrease_self= self.request.user
+		if self.object.created_by!=self.request.user:
+			decrease_self.profile.credit_available-=20
+		decrease_self.save()
+
+		return self.render_to_response(context)
 
 class CouponUpdate(UpdateView):
 	model = Coupon

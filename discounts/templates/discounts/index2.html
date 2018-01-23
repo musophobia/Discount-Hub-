@@ -4,7 +4,10 @@
 
 {% block body %}
 
-
+    <br>
+    <br>
+    <br>
+    <div  style="margin-left:40px; margin-right:40px;">
 <h1 class="page-header">{{bypercentage}}</h1>
     <table class="table table-striped">
         <thead>
@@ -15,7 +18,7 @@
         <tbody>
         {% for percent in all_bypercentages %}
         <tr>
-            <td><a href="{% url 'discounts:detail2' percent.id %}">Starting From {{percent.byPercentage}} Percenents</a>
+            <td class="w3-container w3-padding-16 w3-white" style = "text-align: left;"><a href="{% url 'discounts:detail2' percent.id %}">Starting From {{percent.byPercentage}} Percenents</a>
             </td>
             
         </tr>
@@ -23,6 +26,6 @@
         </tbody>
     </table>
 
-
+    </div>
 
 {% endblock %}

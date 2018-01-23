@@ -1,21 +1,46 @@
 {% extends 'discounts/base.html'%}
-
-{% block body %}
-
-
 {% block title %}{{ object.coupon_name }}{% endblock %}
 
 
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container containerCoupon">
 
+    <div class="row">
 
+        <!-- Left Album Info -->
+        <div class="col-sm-8 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1>{{ object.coupon_name }}</h1>
+                    <h3>Coupon Code: {{object.coupon_code}}</h3>
+                    
+                    <a href="{{ object.coupon_link }}" target="_blank"> <h3> {{ object.coupon_link }} </h3> </a>
+                    <h3><small>Detail: {{ object.coupon_detail }}</small></h3>
+                    <h3>Submitted By: {{ object.created_by }}</h3>
+                </div>
+            </div>
+        </div>
 
-{{object.coupon_name}}
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
 
-{{object.coupon_detail}}
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+            
+            </ul>
 
-{{object.coupon_link}}
+            
 
-{{object.coupon_code}}
+        </div>
 
+    </div>
+
+</div>
 
 {% endblock %}

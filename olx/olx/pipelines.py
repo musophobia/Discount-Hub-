@@ -91,8 +91,15 @@ class OlxPipeline(object):
         print(results[0])
         print("this was results")
 
+        if results[0] > 90:
+            product.byPercentage=percent90
+            product.save()
 
-        if results[0] > 50:
+        elif results[0] > 70:
+            product.byPercentage=percent70
+            product.save()
+
+        elif results[0] > 50:
             product.byPercentage=percent50
             product.save()
         elif results[0] > 30:

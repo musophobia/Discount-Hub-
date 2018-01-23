@@ -9,46 +9,49 @@
 <h3>{{ website.website_region}}</h3>
 
 <ul>
-	{% for product in website.product_set.all %}
-		
-	<li>
-		{% if product.percentage %}
-		<a href="{{ product.url }}"> {{ product.title }} discount: {{ product.percentage }} </a>
-		{% endif %}
-	</li>
-		
-	{% endfor %}
+    {% for product in website.product_set.all %}
+        
+    <li>
+        {% if product.percentage %}
+        <a href="{{ product.url }}"> {{ product.title }} discount: {{ product.percentage }} </a>
+        {% endif %}
+    </li>
+        
+    {% endfor %}
 </ul>
 -->
-
+    
+    <br>
+    <br>
+    <br>
+    <div  style="margin-left:40px; margin-right:40px;">
     <h1 class="page-header">Starting From {{bypercentage}} Percents</h1>
     <table class="table table-striped" id="mytable">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Old Price</th>
-            <th>Discount</th>
-            <th>New Price</th>
+            <th class="w3-container w3-padding-32 w3-khaki" style = "text-align: center;">Title</th>
+            <th class="w3-container w3-padding-32 w3-yellow" style = "text-align: center;">Old Price</th>
+            <th class="w3-container w3-padding-32 w3-orange" style = "text-align: center;">Discount</th>
+            <th class="w3-container w3-padding-32 w3-yellow" style = "text-align: center;">New Price</th>
           </tr>
         </thead>
         <tbody>
         {% for product in bypercentage.product_set.all %}
         <tr class="active">
-            <td>{% if product.url %}
-                <a href="{{ product.url }}" target="_blank">
-                    {{ product.title }}
-                </a>
+            <td class="w3-container w3-padding-16 w3-light-orange" style = "text-align: center;">{% if product.url %}
+                <a href="{{ product.url }}" target="_blank">{{ product.title }}</a>
                 {% else %}
                     {{ product.title }}
                 {% endif %}
             </td>
-            <td>{{ product.price_old }}</td>
-            <td>{{ product.percentage }}</td>
-            <td>{{ product.price_new }}</td>
+            <td class="w3-container w3-padding-16 w3-khaki" style = "text-align: center;">{{ product.price_old }}</td>
+            <td class="w3-container w3-padding-16 w3-orange" style = "text-align: center;">{{ product.percentage }}</td>
+            <td class="w3-container w3-padding-16 w3-khaki" style = "text-align: center;">{{ product.price_new }}</td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}
 
 

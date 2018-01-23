@@ -2,55 +2,70 @@
 
 {% block body %}
 
-<h1> Submitted Coupons </h1>
+    <br>
+    <br>
+    <br>
+    <div  style="margin-left:40px; margin-right:40px;">
 
-<!--
-<ul>
-	{% for product in all_coupons %}
-		
-	<li>
-		<a href="{% url 'discounts:coupon-update' pk=product.pk %}">{{ product.coupon_name }} --- {{ product.coupon_detail }}</a>
-
-		<form action="{% url 'discounts:coupon-delete' pk=product.pk %}" method="post" style="display: inline;">
-			{% csrf_token %}
-			<input type="hidden" name="product_id" value="{{product.id}}"/>
-			<button type="submit" class="btn btn-default btn-sm">
-				<span class="glyphicon glyphicon-trash"></span>
-			</button>
-		</form>
-
-	</li>
-		
-	{% endfor %}
-</ul>
-
--->
-
+<h1> Coupon </h1>
 
 
     <table class="table table-striped" id="mytable">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Details</th>
+            <th class="w3-container w3-padding-32 w3-khaki" style = "text-align: center;">Title</th>
+            <th class="w3-container w3-padding-32 w3-yellow" style = "text-align: center;">Details</th>
+            <th class="w3-container w3-padding-32 w3-orange" style = "text-align: center;">Added By</th>
           </tr>
         </thead>
         <tbody>
         {% for product in all_coupons %}
         <tr class="active">
-            <td>
-                <a href="{% url 'discounts:coupon-detail' product.id %}">{{ product.coupon_name }}</a>
+            <td class="w3-container w3-padding-16 w3-light-orange" style = "text-align: center;">>
+                
+
+                {% if product.created_by.id != user.id %}
+                <a>{{ product.coupon_name }}</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#MyModal"></button>
+
+                
+                <div id="MyModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                            <a>If you proceed, 20 credits will be deducted from your account!</a>
+                            <a href="{% url 'discounts:coupon-detail' product.id %}">Proceed Further?</a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+                    <<a href="{% url 'discounts:coupon-detail' product.id %}">{{ product.coupon_name }}</a>
+                {% endif %}
+
             </td>
             
-            <td>{{ product.coupon_detail }}</td>
+            <td class="w3-container w3-padding-16 w3-khaki" style = "text-align: center;">{{ product.coupon_detail }}</td>
+            <td class="w3-container w3-padding-16 w3-orange" style = "text-align: center;">{{ product.created_by }}</td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    </div>
 
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 {% endblock %}

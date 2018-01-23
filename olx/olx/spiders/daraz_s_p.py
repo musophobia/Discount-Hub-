@@ -15,6 +15,15 @@ class DarazSPSpider(scrapy.Spider):
 	'https://www.daraz.com.bd/power-banks/',
 	'https://www.daraz.com.bd/mens-sweatshirts-hoodies/',
 	'https://www.daraz.com.bd/mens-watches/',
+	'https://www.daraz.com.bd/laptops/',
+	'https://www.daraz.com.bd/cameras-accessories-accessories/',
+	'https://www.daraz.com.bd/phones-tablets-accessories/',
+	'https://www.daraz.com.bd/mens-shoes/',
+	'https://www.daraz.com.bd/laundry-home-care/',
+	'https://www.daraz.com.bd/cameras/',
+	'https://www.daraz.com.bd/computing-storage/',
+	'https://www.daraz.com.bd/toys-games/',
+	'https://www.daraz.com.bd/school-essentials/',
 	]
 	prev_page='a'
 
