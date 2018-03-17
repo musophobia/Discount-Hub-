@@ -30,8 +30,11 @@ To use this project and to contribute to it:
   password: ph03ph03
 
 **to crawl discount informations go to the project root and then:**
+
   cd olx/olx/
+  
   scrapy crawl daraz (to crawl daraz.com.bd)
+  
   or
   
   scrapy crawl pickaboo (to crawl pickaboo.com)
