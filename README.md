@@ -23,6 +23,7 @@ to crawl discount informations go to the project root and then:
   cd olx/olx/
   scrapy crawl daraz (to crawl daraz.com.bd)
   or
+  
   scrapy crawl pickaboo (to crawl pickaboo.com)
   
 
